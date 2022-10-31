@@ -1,0 +1,40 @@
+server:
+  port: 8087
+spring:
+  cloud:
+    gateway:
+      redis:
+        enabled: false
+      
+      routes:
+      - id: kyc_services
+        uri: http://localhost:8085
+        predicates:
+        - Path=/aml/kyc/**
+        filters:        - TokenRelay=
+      - id: riskProfile_services
+        uri: http://localhost:8086
+        predicates:
+        - Path=/aml/riskProfile/**
+        filters:
+        - TokenRelay=
+      - id: unexpected_services
+        uri: http://localhost:8087
+        predicates:
+        - Path=/aml/unexpected/**
+        filters:
+        - TokenRelay=
+        
+  security:
+    oauth2:
+      client:        provider:          keycloak:
+            issuer-uri: http://localhost:8083/auth/realms/baeldung
+        registration:          quotes-client:
+            provider: keycloak
+            client-id: quotes-client
+            client-secret: 0e082231-a70d-48e8-b8a5-fbfb743041b6
+            scope:            - email
+            - profile
+            - roles
+
+          
