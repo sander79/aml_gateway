@@ -28,11 +28,11 @@ spring:
   security:
     oauth2:
       client:        provider:          keycloak:
-            issuer-uri: http://localhost:8083/auth/realms/baeldung
+            issuer-uri: https://dev-55628242.okta.com/oauth2/default
         registration:          quotes-client:
             provider: keycloak
-            client-id: quotes-client
-            client-secret: 0e082231-a70d-48e8-b8a5-fbfb743041b6
+            client-id: 0oa72he7ux6u4HwNI5d7
+            client-secret: JMbbGxcWmpCOY-sX1Gr3LlmhgwKYY1EQFF2yPQRs
             scope:            - email
             - profile
             - roles
