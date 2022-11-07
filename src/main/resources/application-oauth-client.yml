@@ -1,5 +1,5 @@
 server:
-  port: 8087
+  port: 8083
 spring:
   cloud:
     gateway:
@@ -7,6 +7,12 @@ spring:
         enabled: false
       
       routes:
+      - id: aml_auth
+        uri: http://localhost:8084
+        predicates:
+        - Path=//aml/authentication
+        filters:
+        - TokenRelay=      
       - id: kyc_services
         uri: http://localhost:8085
         predicates:
@@ -24,7 +30,9 @@ spring:
         - Path=/aml/unexpected/**
         filters:
         - TokenRelay=
-        
+
+            
+Comment: >     
   security:
     oauth2:
       client:        provider:          keycloak:
