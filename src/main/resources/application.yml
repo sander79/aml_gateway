@@ -11,26 +11,26 @@ spring:
       - id: aml_auth
         uri: http://localhost:8084
         predicates:
-        - Path=//aml/authentication
+        - Path=/aml/authentication/**
         filters:
-        - TokenRelay=      
+      
       - id: kyc_services
         uri: http://localhost:8085
         predicates:
-        - Path=/aml/kyc/**
-        filters:        - TokenRelay=
+        - Path=/amlKycServices/**
+        filters:
       - id: riskProfile_services
         uri: http://localhost:8086
         predicates:
         - Path=/aml/riskProfile/**
         filters:
-        - TokenRelay=
+ 
       - id: unexpected_services
         uri: http://localhost:8087
         predicates:
         - Path=/aml/unexpected/**
         filters:
-        - TokenRelay=
+
 
             
 Comment: >     
